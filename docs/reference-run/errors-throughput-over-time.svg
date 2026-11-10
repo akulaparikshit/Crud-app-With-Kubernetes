@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="Arial" font-size="12">
+<rect width="760" height="340" fill="white"/>
+<text x="380.0" y="22" text-anchor="middle" font-size="15" font-weight="bold">Throughput, VUs and error rate over time</text>
+<line x1="64" x2="696" y1="292.0" y2="292.0" stroke="#e5e5e5"/>
+<text x="58" y="296.0" text-anchor="end" fill="#555">0</text>
+<line x1="64" x2="696" y1="241.6" y2="241.6" stroke="#e5e5e5"/>
+<text x="58" y="245.6" text-anchor="end" fill="#555">477</text>
+<line x1="64" x2="696" y1="191.2" y2="191.2" stroke="#e5e5e5"/>
+<text x="58" y="195.2" text-anchor="end" fill="#555">954</text>
+<line x1="64" x2="696" y1="140.8" y2="140.8" stroke="#e5e5e5"/>
+<text x="58" y="144.8" text-anchor="end" fill="#555">1431</text>
+<line x1="64" x2="696" y1="90.4" y2="90.4" stroke="#e5e5e5"/>
+<text x="58" y="94.4" text-anchor="end" fill="#555">1908</text>
+<line x1="64" x2="696" y1="40.0" y2="40.0" stroke="#e5e5e5"/>
+<text x="58" y="44.0" text-anchor="end" fill="#555">2385</text>
+<text x="64.0" y="310" text-anchor="middle" fill="#555">0s</text>
+<text x="154.28571428571428" y="310" text-anchor="middle" fill="#555">20s</text>
+<text x="244.57142857142858" y="310" text-anchor="middle" fill="#555">40s</text>
+<text x="334.85714285714283" y="310" text-anchor="middle" fill="#555">60s</text>
+<text x="425.14285714285717" y="310" text-anchor="middle" fill="#555">80s</text>
+<text x="515.4285714285714" y="310" text-anchor="middle" fill="#555">100s</text>
+<text x="605.7142857142857" y="310" text-anchor="middle" fill="#555">120s</text>
+<text x="696.0" y="310" text-anchor="middle" fill="#555">140s</text>
+<text x="380.0" y="332" text-anchor="middle" fill="#333">time since start</text>
+<text transform="translate(16 166.0) rotate(-90)" text-anchor="middle" fill="#333">requests per second / VUs</text>
+<line x1="64" x2="64" y1="40" y2="292" stroke="#333"/><line x1="64" x2="696" y1="292" y2="292" stroke="#333"/>
+<text x="702" y="296.0" fill="#e55353">0.0</text>
+<text x="702" y="245.6" fill="#e55353">1.0</text>
+<text x="702" y="195.2" fill="#e55353">2.0</text>
+<text x="702" y="144.8" fill="#e55353">3.0</text>
+<text x="702" y="94.4" fill="#e55353">4.0</text>
+<text x="702" y="44.0" fill="#e55353">5.0</text>
+<polyline fill="none" stroke="#e55353" stroke-width="2" stroke-dasharray="5 3" points="86.6,292.0 131.7,292.0 176.9,292.0 222.0,292.0 267.1,292.0 312.3,292.0 357.4,292.0 402.6,292.0 447.7,292.0 492.9,292.0 538.0,292.0 583.1,292.0 628.3,292.0 673.4,292.0"/>
+<polyline fill="none" stroke="#2c7be5" stroke-width="2" points="86.6,283.2 131.7,266.0 176.9,248.7 222.0,206.0 267.1,137.3 312.3,80.8 357.4,83.4 402.6,65.5 447.7,65.7 492.9,62.9 538.0,65.9 583.1,71.0 628.3,117.3 673.4,265.1"/>
+<polyline fill="none" stroke="#999999" stroke-width="2" points="86.6,288.8 131.7,285.3 176.9,281.9 222.0,269.1 267.1,255.0 312.3,241.0 357.4,239.2 402.6,239.2 447.7,239.2 492.9,239.2 538.0,239.2 583.1,239.2 628.3,239.2 673.4,271.3"/>
+<rect x="74" y="44" width="12" height="12" fill="#2c7be5"/><text x="90" y="54">req/s</text>
+<rect x="209" y="44" width="12" height="12" fill="#999999"/><text x="225" y="54">VUs</text>
+<rect x="344" y="44" width="12" height="12" fill="#e55353"/><text x="360" y="54">error % (right)</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="Arial" font-size="12">
+<rect width="760" height="340" fill="white"/>
+<text x="380.0" y="22" text-anchor="middle" font-size="15" font-weight="bold">Response time percentiles over time</text>
+<line x1="64" x2="740" y1="292.0" y2="292.0" stroke="#e5e5e5"/>
+<text x="58" y="296.0" text-anchor="end" fill="#555">0</text>
+<line x1="64" x2="740" y1="241.6" y2="241.6" stroke="#e5e5e5"/>
+<text x="58" y="245.6" text-anchor="end" fill="#555">53</text>
+<line x1="64" x2="740" y1="191.2" y2="191.2" stroke="#e5e5e5"/>
+<text x="58" y="195.2" text-anchor="end" fill="#555">106</text>
+<line x1="64" x2="740" y1="140.8" y2="140.8" stroke="#e5e5e5"/>
+<text x="58" y="144.8" text-anchor="end" fill="#555">159</text>
+<line x1="64" x2="740" y1="90.4" y2="90.4" stroke="#e5e5e5"/>
+<text x="58" y="94.4" text-anchor="end" fill="#555">212</text>
+<line x1="64" x2="740" y1="40.00000000000003" y2="40.00000000000003" stroke="#e5e5e5"/>
+<text x="58" y="44.00000000000003" text-anchor="end" fill="#555">264</text>
+<text x="64.0" y="310" text-anchor="middle" fill="#555">0s</text>
+<text x="160.57142857142856" y="310" text-anchor="middle" fill="#555">20s</text>
+<text x="257.1428571428571" y="310" text-anchor="middle" fill="#555">40s</text>
+<text x="353.7142857142857" y="310" text-anchor="middle" fill="#555">60s</text>
+<text x="450.2857142857143" y="310" text-anchor="middle" fill="#555">80s</text>
+<text x="546.8571428571429" y="310" text-anchor="middle" fill="#555">100s</text>
+<text x="643.4285714285714" y="310" text-anchor="middle" fill="#555">120s</text>
+<text x="740.0" y="310" text-anchor="middle" fill="#555">140s</text>
+<text x="402.0" y="332" text-anchor="middle" fill="#333">time since start</text>
+<text transform="translate(16 166.0) rotate(-90)" text-anchor="middle" fill="#333">milliseconds</text>
+<line x1="64" x2="64" y1="40" y2="292" stroke="#333"/><line x1="64" x2="740" y1="292" y2="292" stroke="#333"/>
+<polyline fill="none" stroke="#2c7be5" stroke-width="2" points="88.1,290.4 136.4,290.3 184.7,290.1 233.0,290.1 281.3,289.0 329.6,284.8 377.9,258.6 426.1,269.4 474.4,270.7 522.7,274.0 571.0,272.2 619.3,269.0 667.6,287.8 715.9,290.4"/>
+<polyline fill="none" stroke="#f0a202" stroke-width="2" points="88.1,289.6 136.4,289.4 184.7,289.0 233.0,288.1 281.3,284.2 329.6,257.0 377.9,157.6 426.1,219.4 474.4,216.8 522.7,221.5 571.0,220.1 619.3,210.3 667.6,251.0 715.9,287.8"/>
+<polyline fill="none" stroke="#e55353" stroke-width="2" points="88.1,289.3 136.4,288.9 184.7,288.5 233.0,287.1 281.3,282.2 329.6,231.4 377.9,119.4 426.1,196.6 474.4,197.8 522.7,189.5 571.0,191.0 619.3,188.8 667.6,222.2 715.9,285.8"/>
+<polyline fill="none" stroke="#7a3fbf" stroke-width="2" points="88.1,288.6 136.4,287.6 184.7,287.1 233.0,283.9 281.3,274.9 329.6,194.3 377.9,62.9 426.1,151.8 474.4,128.0 522.7,123.3 571.0,94.9 619.3,155.8 667.6,169.1 715.9,278.3"/>
+<rect x="74" y="44" width="12" height="12" fill="#2c7be5"/><text x="90" y="54">p50</text>
+<rect x="194" y="44" width="12" height="12" fill="#f0a202"/><text x="210" y="54">p90</text>
+<rect x="314" y="44" width="12" height="12" fill="#e55353"/><text x="330" y="54">p95</text>
+<rect x="434" y="44" width="12" height="12" fill="#7a3fbf"/><text x="450" y="54">p99</text>
+</svg>

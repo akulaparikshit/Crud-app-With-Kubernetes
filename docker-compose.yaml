@@ -1,0 +1,54 @@
+services:
+  app:
+    build: .
+    image: flask-crud-app:1.0
+    container_name: flask-crud-app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: cruduser
+      DB_PASSWORD: crudpassword
+      DB_NAME: cruddb
+      GUNICORN_WORKERS: 4
+      GUNICORN_THREADS: 4
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - crud-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:3000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  db:
+    image: mysql:8.4
+    container_name: flask-crud-database
+    command: ["--skip-log-bin", "--innodb-flush-log-at-trx-commit=2", "--max-connections=300"]
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cruddb
+      MYSQL_USER: cruduser
+      MYSQL_PASSWORD: crudpassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - crud-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql-data:
+
+networks:
+  crud-network:
+    driver: bridge

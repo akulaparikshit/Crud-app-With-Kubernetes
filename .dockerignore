@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.git/
+k8s/
+k6/
+scripts/
+tests/
+docs/
+original-node-app/
+*.md
+.env
+*.log

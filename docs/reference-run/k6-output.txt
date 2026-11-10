@@ -1,0 +1,41 @@
+  █ THRESHOLDS 
+    create_errors
+    ✓ 'rate<0.01' rate=0.00%
+    delete_errors
+    ✓ 'rate<0.01' rate=0.00%
+    http_req_duration
+    ✓ 'p(95)<2000' p(95)=98.66ms
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+    read_errors
+    ✓ 'rate<0.01' rate=0.00%
+    update_errors
+    ✓ 'rate<0.01' rate=0.00%
+  █ TOTAL RESULTS 
+    checks_total.......: 235044  1730.87358/s
+    checks_succeeded...: 100.00% 235044 out of 235044
+    checks_failed......: 0.00%   0 out of 235044
+    ✓ create 201
+    ✓ create has id
+    ✓ read all 200
+    ✓ read one 200
+    ✓ update 200
+    ✓ delete 200
+    CUSTOM
+    create_errors..................: 0.00%  0 out of 39174
+    delete_errors..................: 0.00%  0 out of 39174
+    read_errors....................: 0.00%  0 out of 78348
+    update_errors..................: 0.00%  0 out of 39174
+    HTTP
+    http_req_duration..............: avg=26.83ms min=667.3µs med=12.31ms p(90)=71.23ms p(95)=98.66ms p(99)=178.03ms max=308.59ms
+      { expected_response:true }...: avg=26.83ms min=667.3µs med=12.31ms p(90)=71.23ms p(95)=98.66ms p(99)=178.03ms max=308.59ms
+    http_req_failed................: 0.00%  0 out of 195870
+    http_reqs......................: 195870 1442.39465/s
+    EXECUTION
+    iteration_duration.............: avg=1.13s   min=1s      med=1.06s   p(90)=1.35s   p(95)=1.48s   p(99)=1.81s    max=2.12s   
+    iterations.....................: 39174  288.47893/s
+    vus............................: 1      min=1           max=500
+    vus_max........................: 500    min=500         max=500
+    NETWORK
+    data_received..................: 157 MB 1.2 MB/s
+    data_sent......................: 26 MB  193 kB/s

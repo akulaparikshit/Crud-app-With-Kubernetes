@@ -1,0 +1,20 @@
+# NodePort: exposes the app on every node's IP at port 30080, so the browser
+# and the k6 load generator (outside the cluster) can reach it on Minikube
+# without a cloud load balancer. Inside the cluster it also works as a normal
+# ClusterIP service (flask-crud-service:3000).
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-crud-service
+  namespace: default
+  labels:
+    app: flask-crud-app
+spec:
+  type: NodePort
+  selector:
+    app: flask-crud-app
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      nodePort: 30080

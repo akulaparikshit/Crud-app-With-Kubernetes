@@ -1,0 +1,33 @@
+# Scales the app from 1 to 5 pods when average CPU goes above 60 % of the
+# request (60 % of 500m = 300m per pod).
+# Needs: minikube addons enable metrics-server
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flask-crud-hpa
+  namespace: default
+  labels:
+    app: flask-crud-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flask-crud-app
+  minReplicas: 1
+  maxReplicas: 5        # 5 x 4 workers x 4 DB connections = 80 < MySQL max_connections 300
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0      # react immediately: the test only lasts ~2 min
+      policies:
+        - type: Pods
+          value: 2                       # add up to 2 pods every 15 s
+          periodSeconds: 15
+    scaleDown:
+      stabilizationWindowSeconds: 120    # don't remove pods the moment the load dips

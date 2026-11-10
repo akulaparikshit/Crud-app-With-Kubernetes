@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-crud-app
+  namespace: default
+  labels:
+    app: flask-crud-app
+    tier: backend
+spec:
+  replicas: 1                      # required by the assignment; the HPA (hpa.yaml) may scale it up
+  selector:
+    matchLabels:
+      app: flask-crud-app
+  template:
+    metadata:
+      labels:
+        app: flask-crud-app
+        tier: backend
+    spec:
+      securityContext:
+        runAsNonRoot: true         # the image runs as appuser (uid 10001)
+      containers:
+        - name: flask-crud-app
+          image: flask-crud-app:1.0
+          imagePullPolicy: IfNotPresent   # image is built inside Minikube
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: DB_HOST
+              value: mysql
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              valueFrom: { secretKeyRef: { name: mysql-credentials, key: MYSQL_DATABASE } }
+            - name: DB_USER
+              valueFrom: { secretKeyRef: { name: mysql-credentials, key: MYSQL_USER } }
+            - name: DB_PASSWORD
+              valueFrom: { secretKeyRef: { name: mysql-credentials, key: MYSQL_PASSWORD } }
+            - name: GUNICORN_WORKERS     # 4 processes x 4 threads = 16 requests in parallel
+              value: "4"
+            - name: GUNICORN_THREADS     # also the MySQL pool size per worker
+              value: "4"
+          resources:
+            requests:                  # what the scheduler reserves (and the HPA's 100 %)
+              cpu: 500m
+              memory: 256Mi
+            limits:                    # hard ceiling: CPU is throttled, memory is OOM-killed
+              cpu: "2"
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+          # startupProbe: gives the container up to 60 s to boot before the
+          # other probes start counting.
+          startupProbe:
+            httpGet: { path: /health, port: 3000 }
+            periodSeconds: 2
+            failureThreshold: 30
+          # readinessProbe: only send traffic to a pod that answers /health.
+          # Under heavy load /health waits in the same queue as real requests,
+          # so the timeout and failure threshold are generous; otherwise the
+          # pod is pulled out of the Service mid-test and new connections are
+          # refused (status 0 in k6).
+          readinessProbe:
+            httpGet: { path: /ready, port: 3000 }
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 6
+          # livenessProbe: restart the container if it stops answering for ~60 s.
+          livenessProbe:
+            httpGet: { path: /health, port: 3000 }
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 16px; }
+    h1 { color: #2c3e50; }
+    form { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; background: #2c7be5; color: #fff; }
+    button.delete { background: #e55353; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+    .qty { width: 70px; }
+    #message { color: #e55353; min-height: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Inventory Management System</h1>
+
+  <form id="addForm">
+    <input id="name" placeholder="Product name" required>
+    <input id="quantity" type="number" min="0" step="1" placeholder="Quantity" required>
+    <input id="price" type="number" min="0" step="0.01" placeholder="Price" required>
+    <button type="submit">Add Product</button>
+  </form>
+  <p id="message"></p>
+
+  <table>
+    <thead><tr><th>ID</th><th>Name</th><th>Quantity</th><th>Price (€)</th><th>Actions</th></tr></thead>
+    <tbody id="products"></tbody>
+  </table>
+
+  <script>
+    const api = "/api/products";
+    const message = document.getElementById("message");
+
+    async function request(url, options = {}) {
+      const res = await fetch(url, { headers: { "Content-Type": "application/json" }, ...options });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Request failed");
+      return data;
+    }
+
+    // READ
+    async function loadProducts() {
+      const tbody = document.getElementById("products");
+      tbody.innerHTML = "";
+      for (const p of await request(api)) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${p.id}</td><td></td>
+          <td><input class="qty" type="number" min="0" value="${p.quantity}"></td>
+          <td>${p.price.toFixed(2)}</td>
+          <td><button>Update</button> <button class="delete">Delete</button></td>`;
+        row.children[1].textContent = p.name;  // textContent avoids HTML injection
+        const [updateBtn, deleteBtn] = row.querySelectorAll("button");
+        updateBtn.onclick = () => run(() => request(`${api}/${p.id}`, {
+          method: "PUT", body: JSON.stringify({ quantity: Number(row.querySelector(".qty").value) })
+        }));
+        deleteBtn.onclick = () => run(() => request(`${api}/${p.id}`, { method: "DELETE" }));
+        tbody.appendChild(row);
+      }
+    }
+
+    async function run(action) {
+      message.textContent = "";
+      try { await action(); await loadProducts(); }
+      catch (err) { message.textContent = err.message; }
+    }
+
+    // CREATE
+    document.getElementById("addForm").onsubmit = (e) => {
+      e.preventDefault();
+      run(async () => {
+        await request(api, { method: "POST", body: JSON.stringify({
+          name: document.getElementById("name").value,
+          quantity: Number(document.getElementById("quantity").value),
+          price: Number(document.getElementById("price").value)
+        })});
+        e.target.reset();
+      });
+    };
+
+    run(() => Promise.resolve());
+  </script>
+</body>
+</html>
