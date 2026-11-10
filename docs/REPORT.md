@@ -1,15 +1,15 @@
 # Containerization, Kubernetes Deployment & Observability
 
-**IT Security Management (ITSM) & DevOps – Re-examination Assignment**
+**IT Security Management (ITSM) & DevOps – Examination Assignment**
 Faculty of Computer Science & Engineering, Department of Information Technology
 Academic Year 2025 – 2026
 
 | | |
 |---|---|
-| **Name** | **[PASTE: your full name]** |
-| **Student ID** | 10008308 |
+| **Name** | **Akula Parikshit** |
+| **Student ID** | 100008722 |
 | **GitHub repository** | **[PASTE: https://github.com/<user>/<repo>]** |
-| **Date** | **[PASTE: submission date]** |
+| **Date** | **11-11-2026** |
 
 > How to use this draft: every place marked **[PASTE]** needs output from *your* Minikube
 > run (screenshots or command output). Numbers in the "reference run" sections were measured
